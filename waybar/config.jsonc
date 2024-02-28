@@ -1,0 +1,223 @@
+[
+    {
+        "name": "topbar",
+        "layer": "top",
+        "position": "top",
+        "height": 33,
+        "modules-left": [
+            "custom/power_btn",
+            "custom/lock_screen",
+            "hyprland/workspaces"
+        ],
+        "modules-center": [
+            "clock"
+        ],
+        "modules-right": [
+            "cpu",
+            "memory",
+            "pulseaudio",
+            "pulseaudio#microphone",
+            "tray",
+            "hyprland/language",
+        ],
+
+        "include": [
+            "~/.config/waybar/scripts/mesu-imp.jsonc",
+        ],
+
+        "custom/power_btn": {
+            "format": "",
+            "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+            "tooltip": false
+        },
+
+        "custom/lock_screen": {
+            "format": "",
+            "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
+            "tooltip": false
+        },        
+
+        "hyprland/workspaces": {
+            "disable-scroll": true,
+            "all-outputs": true,
+            "on-click": "activate",
+            "persistent-workspaces": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": []
+            }
+        },
+
+        "clock": {
+            "format": "{:%I:%M:%S %p}  ",
+            "interval": 1,
+            "format-alt": "{:%A, %B %d, %Y (%r)}  ",
+            "tooltip-format": "\n<span size='9pt' font='JetbrainsMono Nerd Font'>{calendar}</span>",
+            "calendar": {
+                        "mode"          : "year",
+                        "mode-mon-col"  : 3,
+                        "on-scroll"     : 1,
+                        "on-click-right": "mode",
+                        "format": {
+                                  "months":     "<span color='#ffead3'><b>{}</b></span>",
+                                  "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                                  "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                                  "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                                  "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                                  }
+                        },
+            "actions":  {
+                        "on-click-right": "mode",
+                        "on-click-forward": "tz_up",
+                        "on-click-backward": "tz_down",
+                        "on-scroll-up": "shift_up",
+                        "on-scroll-down": "shift_down"
+                        }
+        },        
+
+        "cpu": {
+            "format": " {usage}%",
+            "tooltip": false,            
+        },
+
+        "disk": {
+            "format": " {avail}%",
+            "tooltip-format": "{used} / {total} used"
+        },
+
+        "memory": {
+   	    "interval": 15,
+	    "format": "󰍛 {used:0.1f}G/{total:0.1f}G"
+        },
+
+        "temperature": {
+            "critical-threshold": 80,
+            "format": "{icon} {temperatureC}°C",
+            "format-icons": ["", "", "", "", ""]
+        },
+
+        "pulseaudio": {
+            "format": "{icon}",
+            "format-muted": "",
+            "on-click": "~/.config/waybar/scripts/volume --toggle",
+            "on-click-right": "pavucontrol",
+            "on-scroll-up": "~/.config/waybar/scripts/volume --inc",
+            "on-scroll-down": "~/.config/waybar/scripts/volume --dec",
+            "scroll-step": 5,
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "tooltip": true,
+            "tooltip-format": "{icon} at {volume}%"
+        },
+
+        "pulseaudio#microphone": {
+            "format": "{format_source}",
+            "format-source": "",
+            "format-source-muted": "",
+            "on-click": "~/.config/waybar/scripts/volume --toggle-mic",
+            "on-click-right": "pavucontrol",
+            "on-scroll-up": "~/.config/waybar/scripts/volume --mic-inc",
+            "on-scroll-down": "~/.config/waybar/scripts/volume --mic-dec",
+            "scroll-step": 5,
+            "tooltip": true,
+            "tooltip-format": " at {volume}%"
+        },
+
+        "tray": {
+            "icon-size": 16,
+            "spacing": 10
+        },
+
+        "custom/weather": {
+            "return-type": "json",
+            "exec": "sh $HOME/.config/waybar/scripts/weather.sh",
+            "interval": 300,
+            "on-click": "firefox https://wttr.in"
+        },
+        "custom/poweroff": {
+            "tooltip": false,
+            "format": "",
+            "on-click": "bash $HOME/.config/waybar/scripts/poweroff.sh"
+        }
+    },
+    {
+        "name": "bottombar",
+        "layer": "top",
+        "position": "bottom",
+        "height": 33,
+        "modules-left": [
+            "custom/launch_wofi",
+            "custom/launch_chrome",
+            "custom/launch_dolphin",
+            "custom/launch_kitty"
+        ],
+        "modules-center": ["wlr/taskbar"],
+        "modules-right": ["tray", "network#ethernet"],
+        "include": [
+            "~/.config/waybar/scripts/mesu-imp.jsonc"
+        ],
+
+        "network#ethernet": {
+            "interface": "enp42s0",
+            "format-ethernet": "󰈀 The Kindheart House: {ipaddr}/{cidr}",
+            "format-wifi": "",
+            "format-linked": "",
+            "format-disconnected": "",
+            "tooltip-format": "{essid}: {ipaddr}",
+            "on-click": "nm-connection-editor"
+        },
+
+        "custom/launch_chrome": {
+            "format": "󰊯",
+            "on-click": "google-chrome-stable",
+            "tooltip": false
+        },
+
+        "custom/launch_dolphin": {
+            "format": "",
+            "on-click": "exec dolphin",
+            "tooltip": false
+        },
+
+        "custom/launch_kitty": {
+            "format": "",
+            "on-click": "exec kitty",
+            "tooltip": false
+        },
+
+        "custom/launch_wofi": {
+            "format": "󱗼",
+            "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/.config/wofi/config-lmenu)' & disown",
+            "tooltip": false
+        },
+
+        "wlr/taskbar": {
+            "format": "{icon}",
+            "icon-size": 24,
+            "all-outputs": true,
+            "tooltip-format": "{name} - {title}",
+            "on-click": "activate",
+            "on-click-middle": "close",
+            "ignore-list": [
+                "wofi"
+            ],
+                "app_ids-mapping": {
+                    "steam_app_39210": "Final Fantasy 14"
+                }
+         }
+    }
+]
