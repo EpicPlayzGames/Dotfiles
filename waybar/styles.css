@@ -47,6 +47,8 @@ tooltip label{
 #custom-launch_chrome,
 #custom-launch_dolphin,
 #custom-launch_kitty,
+#custom-launch_discord,
+#custom-launch_steam,
 #custom-lock_screen,
 #custom-light_dark,
 #custom-power_btn,
@@ -86,6 +88,8 @@ tooltip label{
 #custom-launch_dolphin,
 #custom-launch_wofi,
 #custom-launch_kitty,
+#custom-launch_discord,
+#custom-launch_steam,
 #custom-weather {
     margin-left: 0px;
     border-right: 0px;
