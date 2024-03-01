@@ -146,11 +146,6 @@
             "exec": "sh $HOME/.config/waybar/scripts/weather.sh",
             "interval": 300,
             "on-click": "firefox https://wttr.in"
-        },
-        "custom/poweroff": {
-            "tooltip": false,
-            "format": "",
-            "on-click": "bash $HOME/.config/waybar/scripts/poweroff.sh"
         }
     },
     {
@@ -162,9 +157,7 @@
             "custom/launch_wofi",
             "custom/launch_chrome",
             "custom/launch_dolphin",
-            "custom/launch_kitty",
-            "custom/launch_discord",
-            "custom/launch_steam"
+            "custom/launch_kitty"
         ],
         "modules-center": ["wlr/taskbar"],
         "modules-right": ["tray", "network#ethernet"],
@@ -204,19 +197,7 @@
             "format": "󱗼",
             "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/.config/wofi/config-lmenu)' & disown",
             "tooltip": false
-        },
-
-        "custom/launch_discord": {
-            "format": "󰙯",
-            "on-click": "discord",
-            "tooltip": false
-        },
-        
-        "custom/launch_steam": {
-            "format": "",
-            "on-click": "steam",
-            "tooltip": false
-        },  
+        }, 
 
         "wlr/taskbar": {
             "format": "{icon}",
@@ -229,7 +210,7 @@
                 "wofi"
             ],
                 "app_ids-mapping": {
-                    "steam_app_39210": "Final Fantasy 14"
+                    "steam_app_(appid)": "(appname))"
                 }
          }
     }
